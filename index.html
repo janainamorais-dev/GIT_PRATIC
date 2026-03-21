@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git Quest Pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">🌳</div>
+      <div>
+        <div class="logo-name">Git Quest Pro</div>
+        <div class="logo-sub">Interactive Git Mastery Platform</div>
+      </div>
+    </div>
+    <div class="hstat"><span class="hstat-label">Missão</span><span class="hstat-val" id="hMission">1/20</span></div>
+    <div class="hstat"><span class="hstat-label">XP</span><span class="hstat-val hstat-xp" id="hXP">0</span></div>
+    <div class="hstat"><span class="hstat-label">Streak</span><span class="hstat-val hstat-done" id="hStreak">🔥 0</span></div>
+    <div class="hstat"><span class="hstat-label">Cmds</span><span class="hstat-val" id="hCmds">0</span></div>
+    <button class="theme-btn" onclick="toggleTheme()" title="Tema">🌙</button>
+  </div>
+</header>
+
+<div class="layout">
+  <section style="display:flex;flex-direction:column;gap:16px;">
+    <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+
+    <div class="card">
+      <div class="mission-header">
+        <div class="mission-badges">
+          <div class="badge-row">
+            <span class="badge badge-level" id="bLevel">Nível 1</span>
+            <span class="badge badge-cat" id="bCat">Básico</span>
+          </div>
+          <span class="badge badge-beginner" id="bDiff">Iniciante</span>
+        </div>
+        <h2 class="mission-title" id="mTitle">Carregando...</h2>
+      </div>
+      <div class="mission-body">
+        <div class="story-box" id="mStory"></div>
+        <div id="mDiagram"></div>
+        <div class="info-row">
+          <div class="info-box ib-obj">
+            <div class="ibox-label">🎯 Objetivo</div>
+            <div class="ibox-text" id="mObj"></div>
+          </div>
+          <div class="info-box ib-hint">
+            <div class="ibox-label">💡 Dica</div>
+            <div class="ibox-text" id="mHint"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="term-dots">
+          <span class="term-dot dot-r"></span>
+          <span class="term-dot dot-y"></span>
+          <span class="term-dot dot-g"></span>
+        </div>
+        <div class="term-title">
+          <span>Terminal Git</span>
+          <span>·</span>
+          <span class="term-branch" id="tBranch">main</span>
+        </div>
+        <span style="font-family:var(--mono);font-size:0.7rem;color:var(--t2)">bash</span>
+      </div>
+      <div class="term-body" id="tOutput"></div>
+      <div class="term-input-row">
+        <span class="term-prompt">$</span>
+        <input class="term-input" id="tInput" placeholder="Digite seu comando git..." autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-danger" onclick="resetMission()">🔄 Resetar</button>
+      <button class="btn btn-hint" onclick="showHint()">💡 Dica</button>
+      <button class="btn btn-go" id="btnNext" onclick="nextMission()" disabled>Próxima →</button>
+    </div>
+  </section>
+
+  <aside class="sidebar">
+    <!-- Level Map -->
+    <div class="sbox">
+      <div class="sbox-title">Mapa de Missões</div>
+      <div class="level-map" id="levelMap"></div>
+    </div>
+    <!-- Git Graph -->
+    <div class="sbox">
+      <div class="sbox-title">Git Graph</div>
+      <div class="git-graph" id="gitGraph"></div>
+    </div>
+    <!-- Files -->
+    <div class="sbox">
+      <div class="sbox-title">Working Directory</div>
+      <div class="file-list" id="fileList"><div class="empty">Nenhum arquivo modificado</div></div>
+    </div>
+    <!-- Tasks -->
+    <div class="sbox">
+      <div class="sbox-title">Tarefas da Missão</div>
+      <div class="task-list" id="taskList"></div>
+    </div>
+    <!-- History -->
+    <div class="sbox">
+      <div class="sbox-title">Histórico</div>
+      <div class="hist-list" id="histList"><div class="empty">Nenhum comando ainda</div></div>
+    </div>
+  </aside>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal-box">
+    <div class="modal-emoji" id="mEmoji">🎉</div>
+    <div class="modal-title" id="mModalTitle">Missão Completa!</div>
+    <div class="modal-sub" id="mModalSub">Excelente trabalho!</div>
+    <div class="modal-xp" id="mModalXP">⭐ +50 XP</div>
+    <button class="btn btn-go" onclick="closeModal()">Continuar →</button>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
